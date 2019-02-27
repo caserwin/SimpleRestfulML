@@ -1,0 +1,8 @@
+*.swp
+*.pyc
+*.idea*
+.DS_Store
+log.txt
+*.class
+*.java
+*.tokens
