@@ -3,9 +3,9 @@
 # @Author  : yidxue
 
 import os
-import pickle
 import numpy as np
 from src.handler.base.base_handler import BaseHandler
+from src.utils.model_utils import read_model
 
 module_path = os.path.abspath(os.path.join(os.curdir))
 model_path = os.path.join(module_path, 'model')
@@ -16,13 +16,14 @@ class IrisPredictHandler(BaseHandler):
         super(IrisPredictHandler, self).__init__(application, request, **kwargs)
 
     def do_action(self):
+        # 读参数
         sepal_length = float(self.get_argument('sepal_length', 2.0))
         sepal_width = float(self.get_argument('sepal_width', 2.0))
         petal_length = float(self.get_argument('petal_length', 2.0))
         petal_width = float(self.get_argument('petal_width', 2.0))
 
         # 读取模型
-        lr_model = pickle.load(open(os.path.join(model_path, 'lr_iris.model'), 'rb'))
+        lr_model = read_model(os.path.join(model_path, 'lr_iris.model'))
 
         # 预测
         index = lr_model.predict(np.array([[sepal_length, sepal_width, petal_length, petal_width]]))[0]
