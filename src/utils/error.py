@@ -7,4 +7,3 @@ class Error(object):
     ERROR_CODE1 = 1
     ERROR_CODE2 = 1
     ERROR_CODE3 = 2
-

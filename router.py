@@ -1,10 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from src.handler.index_handler import IndexHandler
-from src.handler.demo_handler import DemoHandler
+from src.handler.description_handler import DescriptionHandler
+from src.handler.compute_handler import SimpleComputeHandler
+from src.handler.iris_predict_handler import IrisPredictHandler
 
 url_map = [
-    (r"/index", IndexHandler),
-    (r"/demo", DemoHandler),
+    (r"/description", DescriptionHandler),
+    (r"/compute", SimpleComputeHandler),
+    (r"/iris_predict", IrisPredictHandler)
 ]

@@ -65,6 +65,6 @@ class BaseHandler(RequestHandler):
     def set_error(self, error_code, error_message):
         self._status = error_code
         self._error_message = error_message
-        self._result ={
+        self._result = {
             "error": error_message
         }

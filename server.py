@@ -10,6 +10,9 @@ import tornado.locale
 import tornado.web
 from tornado.options import define, options, parse_command_line
 from src.utils import config
+# noinspection PyUnresolvedReferences
+from src.train.lr_train import LogisticRegressionTrain
+
 
 port = int(config.get("global", "port"))
 debug_mode = int(config.get("global", "server_debug_mode"))
