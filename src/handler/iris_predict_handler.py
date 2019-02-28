@@ -16,7 +16,7 @@ class IrisPredictHandler(BaseHandler):
         super(IrisPredictHandler, self).__init__(application, request, **kwargs)
 
     def do_action(self):
-        # 读参数
+        # 参数
         sepal_length = float(self.get_argument('sepal_length', 2.0))
         sepal_width = float(self.get_argument('sepal_width', 2.0))
         petal_length = float(self.get_argument('petal_length', 2.0))
