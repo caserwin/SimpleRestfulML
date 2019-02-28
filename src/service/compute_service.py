@@ -24,7 +24,7 @@ class ComputeService(object):
         :param b:
         :return:
         """
-        return a / b
+        return a / float(b)
 
     @staticmethod
     def multiply(a, b):
