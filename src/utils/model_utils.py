@@ -13,4 +13,5 @@ def store_model(model, filename):
 
 def read_model(filename):
     fr = open(filename, 'rb')
+    print("load model {filename}".format(filename = filename))
     return pickle.load(fr)

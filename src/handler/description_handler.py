@@ -10,4 +10,4 @@ class DescriptionHandler(BaseHandler):
 
     def do_action(self):
         # 调用set_result方法响应http请求
-        self.set_result({"result": "this is restful API for machine learning. welcome !"})
+        self.set_result({"message": "this is restful API for machine learning. welcome !"})

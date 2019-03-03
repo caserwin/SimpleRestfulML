@@ -44,7 +44,8 @@ class BaseHandler(RequestHandler):
                 self._error_message = 'API handler error'
             raise e
 
-    @timeout(6000)
+    # set 600 seconds timeout
+    @timeout(600)
     def do_action_timeout(self):
         self.do_action()
 
@@ -56,6 +57,9 @@ class BaseHandler(RequestHandler):
             "status": self._status,
         }
 
+        if self._error_message != '':
+            self._result["error"] = self._error_message
+
         response.update(self._result)
         self.write(json.dumps(response))
 
@@ -65,6 +69,3 @@ class BaseHandler(RequestHandler):
     def set_error(self, error_code, error_message):
         self._status = error_code
         self._error_message = error_message
-        self._result = {
-            "error": error_message
-        }
