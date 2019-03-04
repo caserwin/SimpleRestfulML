@@ -19,7 +19,8 @@ class LoadRawDataHandler(BaseHandler):
         super(LoadRawDataHandler, self).__init__(application, request, **kwargs)
 
     def do_action(self):
-        operDF = pd.read_json(os.path.join(data_path, 'mng20days_B.json'))
+        filename = self.get_argument('filename', "mng30days_AI.json")
+        operDF = pd.read_json(os.path.join(data_path, filename))
         raw_values = operDF.values.tolist()
         values = [(int(time.mktime(time.strptime(str(value[0]), '%Y-%m-%d %H:%M:%S'))), str(value[0]), value[1]) for
                   value in raw_values]

@@ -49,7 +49,7 @@ class Error500CalService(object):
         m = Prophet(changepoint_prior_scale=0.001)
         m.fit(finalDF)
 
-        future = m.make_future_dataframe(periods=120, freq='H')
+        future = m.make_future_dataframe(periods=288, freq='5min')
         fcst = m.predict(future)
 
         return fcst

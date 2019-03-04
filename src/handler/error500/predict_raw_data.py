@@ -22,6 +22,6 @@ class PredictRawDataHandler(BaseHandler):
 
         pred_value = res_dic.get(timestamp, -1)
         if value >= pred_value:
-            self.set_result({"label": 1, "predict value": pred_value})
+            self.set_result({"label": 1, "yhat_upper": pred_value})
         else:
-            self.set_result({"label": 0, "predict value": pred_value})
+            self.set_result({"label": 0, "yhat_upper": pred_value})
