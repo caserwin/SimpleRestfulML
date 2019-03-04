@@ -1,5 +1,5 @@
 ## 1. 说明
-基于tornado 实现简单的 python Restful API，用于机器学习模型部署和调用。下面示例中用 postman 来模拟 http 请求。
+基于tornado 实现简单的 python Restful API，用于机器学习模型部署和调用。用MySQL做数据持久化存储，Redis做缓存存储。以下是使用示例和部署说明：
 
 ## 2. 部署说明
 依赖组件：
