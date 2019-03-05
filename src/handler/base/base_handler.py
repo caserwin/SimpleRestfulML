@@ -13,6 +13,7 @@ class BaseHandler(RequestHandler):
         self._status = 0
         self._error_message = ""
         self._result = {}
+        self.models = {}
 
     def head(self, *args, **kwargs):
         self.run()
@@ -69,3 +70,9 @@ class BaseHandler(RequestHandler):
     def set_error(self, error_code, error_message):
         self._status = error_code
         self._error_message = error_message
+
+    def update_model(self, key, value):
+        self.models.update({key: value})
+
+    def get_model(self, key):
+        return self.models.get(key, None)

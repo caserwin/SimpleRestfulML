@@ -24,6 +24,11 @@ class IrisPredictHandler(BaseHandler):
         petal_width = float(self.get_argument('petal_width', 2.0))
 
         # 预测
-        index = lr_model.predict(np.array([[sepal_length, sepal_width, petal_length, petal_width]]))[0]
-        target = lr_model.get_target_name()[index]
+        if self.get_model('lr_iris.model') is None:
+            self.update_model("lr_iris.model", lr_model)
+
+        model = self.get_model('lr_iris.model')
+        
+        index = model.predict(np.array([[sepal_length, sepal_width, petal_length, petal_width]]))[0]
+        target = model.get_target_name()[index]
         self.set_result(result={"label": target})

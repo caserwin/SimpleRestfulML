@@ -1,12 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from src.handler.description_handler import DescriptionHandler
 from src.handler.compute_handler import SimpleComputeHandler
-from src.handler.iris_predict_handler import IrisPredictHandler
+from src.handler.description_handler import DescriptionHandler
 from src.handler.error500.load_raw_data import LoadRawDataHandler
-from src.handler.error500.train_raw_data import TrainRawDataHandler
 from src.handler.error500.predict_raw_data import PredictRawDataHandler
+from src.handler.error500.train_raw_data import TrainRawDataHandler
+from src.handler.iris_predict_handler import IrisPredictHandler
 
 url_map = [
     (r"/description", DescriptionHandler),

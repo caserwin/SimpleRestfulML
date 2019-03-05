@@ -16,8 +16,6 @@ process_num = int(config.get("global", "process_num"))
 
 settings = {
     'debug': debug_mode,
-    'template_path': os.getenv("TEMPLATES"),
-    'static_path': os.getenv("STATIC"),
 }
 
 define("port", default=port, help="server listening port")
