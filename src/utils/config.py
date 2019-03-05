@@ -6,15 +6,8 @@ from ConfigParser import RawConfigParser
 
 
 class Configuration(object):
-    def __init__(self, config_file=None):
-        user = os.getenv("USER") or "app"
-        default_conf = os.path.join(os.getenv("CONF") or "conf", user + ".conf")
-
-        if not os.path.exists(default_conf):
-            dir_name = os.path.dirname(default_conf)
-            default_conf = os.path.join(dir_name, "app.conf")
-
-        self._config_file = default_conf if not config_file else config_file
+    def __init__(self):
+        self._config_file = os.path.join("conf", "app.conf")
         self._load()
 
     def _load(self):
