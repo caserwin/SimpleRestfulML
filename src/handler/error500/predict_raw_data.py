@@ -12,16 +12,16 @@ class PredictRawDataHandler(BaseHandler):
         super(PredictRawDataHandler, self).__init__(application, request, **kwargs)
 
     def do_action(self):
-        timestamp = self.get_argument('timestamp', "1")
-        value = float(self.get_argument('value', 0.0))
+        timestamp = self.get_argument('timestamp', "2018-10-10 00:01:00")
+        value = float(self.get_argument('value', 0.5))
         # 预测
         rc = RedisClient()
         res_ls = rc.get_cache_data("error500")
-        res_dic = {json.loads(item)["ds"]: float(json.loads(item)["yhat_upper"]) for item in res_ls}
+        res_dic = {json.loads(item)["timestamp"]: float(json.loads(item)["col1"]) for item in res_ls}
         print(res_dic)
 
         pred_value = res_dic.get(timestamp, -1)
         if value >= pred_value:
-            self.set_result({"label": 1, "yhat_upper": pred_value})
+            self.set_result({"label": 1, "reference": pred_value, "true value": value})
         else:
-            self.set_result({"label": 0, "yhat_upper": pred_value})
+            self.set_result({"label": 0, "reference": pred_value, "true value": value})

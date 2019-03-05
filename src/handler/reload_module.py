@@ -15,7 +15,13 @@ class ReloadModelHandler(BaseHandler):
         super(ReloadModelHandler, self).__init__(application, request, **kwargs)
 
     def do_action(self):
-        print("hhhhhhhhh")
-        # filename = self.get_argument('filename', 'lr_iris.model')
-        # lr_model = read_model(os.path.join(model_path, filename))
-        # self.update_model(filename, lr_model)
+        model_name = self.get_argument('modelname', None)
+        if model_name is None:
+            for model_name in os.listdir(model_path):
+                model = read_model(os.path.join(model_path, model_name))
+                self.update_model(model_name, model)
+            self.set_result(result={"message": "server has reload all models"})
+        else:
+            model = read_model(os.path.join(model_path, model_name))
+            self.update_model(model_name, model)
+            self.set_result(result={"message": "server has reload {model}".format(model=model_name)})

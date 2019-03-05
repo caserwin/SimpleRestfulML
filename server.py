@@ -1,14 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import os
 import tornado.httpserver
 import tornado.ioloop
 import tornado.locale
 import tornado.web
-from src.utils import config
 from tornado.options import define, options, parse_command_line
 # noinspection PyUnresolvedReferences
 from src.train.lr_train import LogisticRegressionTrain
+# noinspection PyUnresolvedReferences
+from src.train.dt_train import DecisionTreeTrain
+
+from src.utils import config
 
 port = int(config.get("global", "port"))
 debug_mode = int(config.get("global", "server_debug_mode"))
