@@ -52,8 +52,6 @@ db=0
 
 返回：{"status": 0, "result": "this is restful API for machine learning. welcome !"}
 
-<div align=centre><img width="80%" height="80%" src="https://github.com/caserwin/SimpleRestfulML/raw/master/pic/restfulAPI_1.png"/></div>
-
 ### 3.2 加减乘除 接口示例
 说明：输入三个参数a、b、ctype。
 
@@ -65,5 +63,3 @@ db=0
 请求：127.0.0.1:12340/compute?a=1&b=2&ctype=1
 
 返回：{"status": 0, "result": -1}
-
-<div align=centre><img width="80%" height="80%" src="https://github.com/caserwin/SimpleRestfulML/raw/master/pic/restfulAPI_2.png"/></div>
