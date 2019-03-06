@@ -1,16 +1,11 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019/2/27 下午2:45
 # @Author  : yidxue
-import os
 import numpy as np
-from src.handler.base.base_handler import BaseHandler
-from src.utils.model_utils import read_model
 from tornado.options import options
+from src.handler.base.base_handler import BaseHandler
 
 USE_MODEL_NAME = 'lr_iris.model'
-# module_path = os.path.abspath(os.path.join(os.curdir))
-# model_path = os.path.join(module_path, 'model')
-# lr_model = read_model(os.path.join(model_path, USE_MODEL_NAME))
 
 
 class LRPredictHandler(BaseHandler):
@@ -25,10 +20,6 @@ class LRPredictHandler(BaseHandler):
         petal_width = float(self.get_argument('petal_width', 2.0))
 
         # 预测
-        # if self.get_model(USE_MODEL_NAME) is None:
-        #     self.update_model(USE_MODEL_NAME, lr_model)
-
-        # model = self.get_model(USE_MODEL_NAME)
         model = options.models.get(USE_MODEL_NAME, None)
 
         index = model.predict(np.array([[sepal_length, sepal_width, petal_length, petal_width]]))[0]

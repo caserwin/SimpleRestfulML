@@ -9,8 +9,8 @@ from tornado.options import define, options, parse_command_line
 from src.train.lr_train import LogisticRegressionTrain
 # noinspection PyUnresolvedReferences
 from src.train.dt_train import DecisionTreeTrain
-
 from src.utils import config
+from load import load_models
 
 port = int(config.get("global", "port"))
 debug_mode = int(config.get("global", "server_debug_mode"))
@@ -20,13 +20,17 @@ settings = {
     'debug': debug_mode,
 }
 
+# define global parameter
 define("port", default=port, help="server listening port")
 define("models", default={})
+
+# set global parameter
+load_models()
 
 
 def main():
     parse_command_line()
-    print ("start api server at %s" % options.port)
+    print("start api server at %s" % options.port)
 
     import router
     app = tornado.web.Application(router.url_map, **settings)

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019/3/5 上午9:55
 # @Author  : yidxue
-import os
 from src.handler.base.base_handler import BaseHandler
 from src.utils.model_utils import read_model
 from tornado.options import options
+import os
 
 module_path = os.path.abspath(os.path.join(os.curdir))
 model_path = os.path.join(module_path, 'model')
