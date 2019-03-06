@@ -16,24 +16,24 @@
 
 ### 2.1 MySQL部署说明
 
-#### 2.1.1 启动/停止mysql服务
+1 启动/停止mysql服务
 ```
 mysql.server start
 mysql.server stop
 ```
-#### 2.1.2 以root用户登入
+2 以root用户登入
 ```
 mysql -u root -p
 ```
-#### 2.1.3 创建用户
+3 创建用户
 ```
 CREATE USER 'xyd'@'localhost' IDENTIFIED BY 'test';
 ```
-#### 2.1.4 创建数据库
+4 创建数据库
 ```
 create database fbprop;
 ```
-#### 2.1.5 赋予用户权限
+5 赋予用户权限
 ```
 GRANT ALL ON fbprop.* TO 'xyd'@'localhost';
 ```
@@ -49,22 +49,133 @@ db=0
 ```
 
 ## 3. 接口示例
-
-### 3.1 description
+### 3.1 /description
+GET请求：
+```
+127.0.0.1:12340/description
+```
 说明：返回restful API说明
 
-GET请求：127.0.0.1:12340/description
+返回：
+```
+{"status": 0, "result": "this is restful API for machine learning. welcome !"}
+```
 
-返回：{"status": 0, "result": "this is restful API for machine learning. welcome !"}
+### 3.2 /compute
+GET请求：
+```
+127.0.0.1:12340/compute?a=1&b=2&ctype=1
+```
 
-### 3.2 加减乘除 接口示例
-说明：输入三个参数a、b、ctype。
+说明：加减乘除操作，输入三个参数a、b、ctype。
 
 1. ctype = 0：表示a+b。
 2. ctype = 1：表示a-b。
 3. ctype = 2：表示a*b。
 4. ctype = 3：表示a/b。
 
-请求：127.0.0.1:12340/compute?a=1&b=2&ctype=1
+返回：
+```
+{"status": 0, "result": -1}
+```
 
-返回：{"status": 0, "result": -1}
+### 3.3 /iris/lr_predict
+GET请求：
+```
+127.0.0.1:12340/iris/lr_predict
+```
+
+说明：基于逻辑回归训练的模型，有4个参数，且默认为：
+```
+    sepal_length = float(self.get_argument('sepal_length', 2.0))
+    sepal_width = float(self.get_argument('sepal_width', 2.0))
+    petal_length = float(self.get_argument('petal_length', 2.0))
+    petal_width = float(self.get_argument('petal_width', 2.0))
+```
+根据传入的参数，判断该样本属于哪种类别。
+
+返回
+```
+{"status": 0, "model": "lr_iris.model", "version": 1.0, "label": "versicolor"}
+```
+
+### 3.4 /iris/dt_predict
+GET请求：
+```
+127.0.0.1:12340/iris/dt_predict
+```
+说明：基于决策树训练的模型，有4个参数，且默认为：
+```
+     sepal_length = float(self.get_argument('sepal_length', 2.0))
+     sepal_width = float(self.get_argument('sepal_width', 2.0))
+     petal_length = float(self.get_argument('petal_length', 2.0))
+     petal_width = float(self.get_argument('petal_width', 2.0))
+```
+根据传入的参数，判断该样本属于哪种类别。
+
+返回
+```
+{"status": 0, "model": "dt_iris.model", "version": 1.0, "label": "virginica"}
+```
+### 3.5 /error500/train_data
+GET请求：
+```
+127.0.0.1:12340/error500/train_data
+```
+说明：mysql 建表和写入示例，redis写入示例。
+
+返回
+```
+{"status": 0, "message": "succeed to insert ignore 5 rows to error500_test"}
+```
+### 3.6 /error500/predict_data
+GET请求：
+```
+127.0.0.1:12340/error500/predict_data
+```
+说明：redis 读取示例。有2个参数，且默认参数为：
+```
+     timestamp = self.get_argument('timestamp', "2018-10-10 00:01:00")
+     value = float(self.get_argument('value', 0.5))
+```
+
+返回
+```
+{"status": 0, "true value": 0.5, "reference": 1.1, "label": 0}
+```
+### 3.7 /reload_model
+GET请求：
+```
+127.0.0.1:12340/reload_model
+```
+说明：加载model文件夹下，全部/指定的模型文件。有一个参数，且默认为：
+```
+    model_name = self.get_argument('modelname', None)
+```
+返回
+```
+{"status": 0, "message": "server has reload all models"}
+```
+
+如果指定参数：```127.0.0.1:12340/reload_model?modelname=lr_iris.model```
+返回：
+```
+{"status": 0, "message": "server has reload lr_iris.model"}
+```
+
+### 3.8 /upload_model
+POST请求：
+```
+127.0.0.1:12340/upload_model
+```
+
+说明：上传模型文件，到model文件夹下。并且把上传的模型更新到内存。
+<div align=centre><img width="80%" height="80%" src="https://github.com/caserwin/SimpleRestfulML/raw/master/pic/restfulAPI_4.png"/></div>
+
+返回
+```
+{"status": 0, "message": "upload lr_iris.model success! server has reload lr_iris.model"}
+```
+
+## 4. 技术细节说明
+参考：

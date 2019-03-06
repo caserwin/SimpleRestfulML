@@ -15,7 +15,7 @@ class TrainRawDataHandler(BaseHandler):
         super(TrainRawDataHandler, self).__init__(application, request, **kwargs)
 
     def do_action(self):
-        # 数据源
+        # data source
         raw_values = [
             {'date': '2018-10-10 00:01:00', 'col1': 1.1, 'col2': 2.1},
             {'date': '2018-10-10 00:02:00', 'col1': 1.2, 'col2': 2.2},
@@ -23,11 +23,11 @@ class TrainRawDataHandler(BaseHandler):
             {'date': '2018-10-10 00:04:00', 'col1': 1.4, 'col2': 2.4},
             {'date': '2018-10-10 00:05:00', 'col1': 1.5, 'col2': 2.5}]
 
-        # 删redis
+        # delete redis rows by key
         rc = RedisClient()
         rc.delete_key("error500")
 
-        # 存redis
+        # save to redis
         values = [{
             "key": "error500_" + str(value.get("date", "0")),
             "timestamp": str(value.get("date", "0")),
@@ -36,14 +36,14 @@ class TrainRawDataHandler(BaseHandler):
         } for value in raw_values]
         rc.set_cache_data(values)
 
-        # mysql 建表
+        # mysql create table
         name = config.get("mysql_error500_test", "name")
         cols = config.get("mysql_error500_test", "col").split(', ')
         types = config.get("mysql_error500_test", "type").split(', ')
         primarys = config.get("mysql_error500_test", "primary").split(', ')
         error500().execute(create_table_sql(name, cols, types, primarys))
 
-        # 插入mysql
+        # insert mysql
         values = [{
             "timestamp": int(time.mktime(time.strptime(str(value.get("date", 0)), '%Y-%m-%d %H:%M:%S'))),
             "date": value.get("date", "0"),

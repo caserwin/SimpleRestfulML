@@ -35,5 +35,5 @@ class FileUploadHandler(BaseHandler):
         options.models[model_name] = model
 
         # 返回结果
-        self.set_result(result={"message": "upload {file} success!server has reload {model}".format(file=model_name,
+        self.set_result(result={"message": "upload {file} success! server has reload {model}".format(file=model_name,
                                                                                                     model=model_name)})
