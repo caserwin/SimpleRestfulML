@@ -7,7 +7,7 @@
 3. 模型upload，即把训练好的模型文件上传到model文件夹下，并且自动reload该模型到内存中，更新已有的模型。
 4. 模型reload，可以直接把训练好的模型放到model文件夹下，并且根据传入的参数call reload API，用于reload 全部/指定 模型到内存。
 5. 基于sklearn 中iris 数据集，训练决策树、逻辑回归。用于功能示例。
-6. 包含mysql/redis 操作基本示例。
+6. 包含mysql/redis 基本操作示例。
 
 以下是部署说明和使用示例：
 
@@ -117,10 +117,10 @@ GET请求：
 ```
 {"status": 0, "model": "dt_iris.model", "version": 1.0, "label": "virginica"}
 ```
-### 3.5 /error500/train_data
+### 3.5 /dbtest/train_data
 GET请求：
 ```
-127.0.0.1:12340/error500/train_data
+127.0.0.1:12340/dbtest/train_data
 ```
 说明：mysql 建表和写入示例，redis写入示例。
 
@@ -128,10 +128,10 @@ GET请求：
 ```
 {"status": 0, "message": "succeed to insert ignore 5 rows to error500_test"}
 ```
-### 3.6 /error500/predict_data
+### 3.6 /dbtest/predict_data
 GET请求：
 ```
-127.0.0.1:12340/error500/predict_data
+127.0.0.1:12340/dbtest/predict_data
 ```
 说明：redis 读取示例。有2个参数，且默认参数为：
 ```
@@ -157,7 +157,7 @@ GET请求：
 {"status": 0, "message": "server has reload all models"}
 ```
 
-如果指定参数：```127.0.0.1:12340/reload_model?modelname=lr_iris.model```
+如果指定参数：```127.0.0.1:12340/reload_model?modelname=lr_iris.model```。
 返回：
 ```
 {"status": 0, "message": "server has reload lr_iris.model"}
