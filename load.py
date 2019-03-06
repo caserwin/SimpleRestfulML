@@ -11,5 +11,5 @@ model_path = os.path.join(module_path, 'model')
 
 
 def load_models():
-    options.models['dt_iris.model'] = read_model(os.path.join(model_path, "dt_iris.model"))
-    options.models['lr_iris.model'] = read_model(os.path.join(model_path, "lr_iris.model"))
+    for model_name in os.listdir(model_path):
+        options.models[model_name] = read_model(os.path.join(model_path, model_name))

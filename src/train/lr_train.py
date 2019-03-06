@@ -19,6 +19,7 @@ class LogisticRegressionTrain(object):
         self.Y = self.train_data.target
         # self model
         self.model = None
+        self.version = 1.0
 
     def get_feature(self):
         return self.X
@@ -46,4 +47,3 @@ if __name__ == '__main__':
     lr_model.train()
     # 存模型
     store_model(lr_model, os.path.join(model_path, 'lr_iris.model'))
-

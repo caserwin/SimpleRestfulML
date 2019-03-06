@@ -19,6 +19,7 @@ class DecisionTreeTrain(object):
         self.Y = self.train_data.target
         # self model
         self.model = None
+        self.version = 1.0
 
     def get_feature(self):
         return self.X

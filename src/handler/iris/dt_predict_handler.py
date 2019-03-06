@@ -4,6 +4,7 @@
 import numpy as np
 from tornado.options import options
 from src.handler.base.base_handler import BaseHandler
+from src.utils.error import Error
 
 USE_MODEL_NAME = 'dt_iris.model'
 
@@ -21,7 +22,11 @@ class DTPredictHandler(BaseHandler):
 
         # 预测
         model = options.models.get(USE_MODEL_NAME, None)
+        if model is None:
+            self.set_error(error_code=Error.ERROR_CODE1,
+                           error_message="{model} is None, please reload models!".format(model=USE_MODEL_NAME))
+            return
 
         index = model.predict(np.array([[sepal_length, sepal_width, petal_length, petal_width]]))[0]
         target = model.get_target_name()[index]
-        self.set_result(result={"label": target, "model": USE_MODEL_NAME})
+        self.set_result(result={"label": target, "model": USE_MODEL_NAME, "version": model.version})
