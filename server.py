@@ -21,6 +21,7 @@ settings = {
 }
 
 define("port", default=port, help="server listening port")
+define("models", default={})
 
 
 def main():

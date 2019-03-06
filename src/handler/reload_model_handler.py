@@ -4,6 +4,7 @@
 import os
 from src.handler.base.base_handler import BaseHandler
 from src.utils.model_utils import read_model
+from tornado.options import options
 
 module_path = os.path.abspath(os.path.join(os.curdir))
 model_path = os.path.join(module_path, 'model')
@@ -19,9 +20,9 @@ class ReloadModelHandler(BaseHandler):
         if model_name is None:
             for model_name in os.listdir(model_path):
                 model = read_model(os.path.join(model_path, model_name))
-                self.update_model(model_name, model)
+                options.models[model_name] = model
             self.set_result(result={"message": "server has reload all models"})
         else:
             model = read_model(os.path.join(model_path, model_name))
-            self.update_model(model_name, model)
+            options.models[model_name] = model
             self.set_result(result={"message": "server has reload {model}".format(model=model_name)})
