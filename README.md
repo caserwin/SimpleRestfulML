@@ -1,5 +1,5 @@
 ## 1. 说明
-基于tornado 实现简单的 python Restful API，用于机器学习模型部署和调用。用MySQL做数据持久化存储，Redis做缓存存储。
+基于python3.6 + tornado 实现简单的 python Restful API，用于机器学习模型部署和调用。用MySQL做数据持久化存储，Redis做缓存存储。
 包含以下部分：
 
 1. server 启动时，自动加载model文件夹下所有训练好的模型。因此在调用模型预测时，无需每次都把模型加载一遍。
@@ -14,10 +14,10 @@
 ## 2. 部署说明
 依赖组件：1. mysql&emsp;&emsp;2. redis&emsp;&emsp;3. python 3.6&emsp;&emsp;4. tornado
 
-部署时候要需要解决包依赖问题，
-cur_dir = sys.path[0]
-os.sys.path.append(os.path.join(cur_dir, "src"))
-
+导入项目依赖package，命令：
+```
+pip install -r requirements.txt
+```
 
 ### 2.1 MySQL部署说明
 
@@ -58,6 +58,32 @@ db=0
 ./redis-server &
 ```
 
+### 2.3 bash 命令
+
+* 启动服务: ```sh server.sh start```
+```
+正在启动服务
+服务启动成功
+```
+
+* 重启服务:```sh server.sh restart```
+```
+正在停止服务
+服务停止成功
+正在启动服务
+服务启动成功
+```
+
+* 查看状态:```sh server.sh status```
+```
+501 42733     1   0  8:21下午 ttys000    0:13.28 python -u /Users/cisco/workspace/restfulML/server.py
+```
+
+* 暂停服务:```sh server.sh stop```
+```
+正在停止服务
+服务停止成功
+```
 
 ## 3. 接口示例
 ### 3.1 /description

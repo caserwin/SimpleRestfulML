@@ -17,15 +17,11 @@ start(){
 
     if [[ ${process_num} -ne 0 ]]; then
         echo "服务已启动, 请使用重启命令"
-
         return 1
     else
         echo "正在启动服务"
-        echo $SERVER_PATH
         nohup python -u $SERVER_PATH &> $CUR_DIR/log/log.out 2>&1 &
-
         sleep 1
-
         process_num=$(process_num)
         if [[ ${process_num} -ne 0 ]]; then
             echo "服务启动成功"
@@ -40,15 +36,11 @@ stop(){
 
     if [[ ${process_num} -eq 0 ]]; then
         echo "服务未启动,不用停止"
-
         return 1
     else
         echo "正在停止服务"
-
         ps -ef | grep $SERVER_FILE | grep -v grep | awk '{print $2}' | xargs kill -9
-
         sleep 1
-
         process_num=$(process_num)
         if [[ ${process_num} -eq 0 ]]; then
             echo "服务停止成功"
@@ -60,9 +52,7 @@ stop(){
 
 restart(){
     stop
-
     sleep 1
-
     start
 }
 
@@ -70,7 +60,7 @@ status(){
     ps -ef | grep $SERVER_FILE | grep -v grep
 }
 
-usage(){
+help(){
     echo "bash $CUR_FILE start: start the server"
     echo "bash $CUR_FILE stop: stop the server"
     echo "bash $CUR_FILE restart: restart the server"
@@ -83,6 +73,6 @@ case $1 in
     $1
     ;;
     *)
-    usage
+    help
     exit
 esac

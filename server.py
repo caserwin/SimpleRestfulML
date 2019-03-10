@@ -27,6 +27,7 @@ define("models", default={})
 # set global parameter
 load_models()
 
+
 def main():
     parse_command_line()
     print("start api server at %s" % options.port)
