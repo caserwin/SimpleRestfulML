@@ -12,8 +12,8 @@ class PredictRawDataHandler(BaseHandler):
         super(PredictRawDataHandler, self).__init__(application, request, **kwargs)
 
     def do_action(self):
-        timestamp = self.get_argument('timestamp', "2018-10-10 00:01:00")
-        value = float(self.get_argument('value', 0.5))
+        timestamp = self.get_argument('timestamp', '2018-10-10 00:01:00')
+        value = float(self.get_argument('value', '0.5'))
         # predict
         rc = RedisClient()
         res_ls = rc.get_cache_data("error500")

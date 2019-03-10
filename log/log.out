@@ -6,3 +6,24 @@ load model /Users/cisco/workspace/restfulML/model/dt_iris.model
   UserWarning)
 start api server at 12340
 [I 190310 20:37:25 autoreload:202] /Users/cisco/workspace/restfulML/server.py modified; restarting server
+/Users/cisco/.pyenv/versions/3.6.5/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator LogisticRegression from version 0.19.1 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+/Users/cisco/.pyenv/versions/3.6.5/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator DecisionTreeClassifier from version 0.19.1 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+[I 190310 21:20:51 autoreload:202] /Users/cisco/workspace/restfulML/server.py modified; restarting server
+load model /Users/cisco/workspace/restfulML/model/lr_iris.model
+Traceback (most recent call last):
+  File "/Users/cisco/workspace/restfulML/src/utils/model_utils.py", line 18, in read_model
+    return pickle.load(fr, encoding='latin1')
+AttributeError: Can't get attribute 'LogisticRegressionTrain' on <module '__main__' from '/Users/cisco/workspace/restfulML/server.py'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/cisco/workspace/restfulML/server.py", line 24, in <module>
+    load_models()
+  File "/Users/cisco/workspace/restfulML/load.py", line 19, in load_models
+    options.models[model_name] = read_model(os.path.join(model_path, model_name))
+  File "/Users/cisco/workspace/restfulML/src/utils/model_utils.py", line 20, in read_model
+    return pickle.load(fr)
+AttributeError: Can't get attribute 'LogisticRegressionTrain' on <module '__main__' from '/Users/cisco/workspace/restfulML/server.py'>

@@ -1,5 +1,5 @@
 ## 1. 说明
-基于python3.6 + tornado 实现简单的 python Restful API，用于机器学习模型部署和调用。用MySQL做数据持久化存储，Redis做缓存存储。
+基于python3.6 + tornado 实现简单的 RESTful API，用于机器学习模型部署和调用。项目中用MySQL做数据持久化存储，Redis做缓存存储。
 包含以下部分：
 
 1. server 启动时，自动加载model文件夹下所有训练好的模型。因此在调用模型预测时，无需每次都把模型加载一遍。
@@ -53,7 +53,7 @@ port=6379
 db=0
 ```
 
-在redis-5.0.3/src下后台启动redis服务：
+在redis-xxx/src下后台启动redis服务：
 ```
 ./redis-server &
 ```
@@ -213,6 +213,21 @@ POST请求：
 ```
 {"status": 0, "message": "upload lr_iris.model success! server has reload lr_iris.model"}
 ```
+
+### 3.9 新增加模型类
+如果用户训练了自己的模型，那么如何使用？以下步骤：
+
+1. 建议把训练的模型类放在src/train下，类似dt_train.py和lr_train.py。
+2. 把dump()的模型示例，通过upload() 方式或直接放到model文件夹下。
+3. 继承 BaseHandler，实现自定义的Handler。
+4. 在server.py import模型的训练类。类似：
+```
+# noinspection PyUnresolvedReferences
+from src.train.lr_train import LogisticRegressionTrain
+# noinspection PyUnresolvedReferences
+from src.train.dt_train import DecisionTreeTrain
+``` 
+5. 重启server。
 
 ## 4. 技术细节说明
 参考：

@@ -15,11 +15,10 @@ class LRPredictHandler(BaseHandler):
 
     def do_action(self):
         # 获取参数
-        sepal_length = float(self.get_argument('sepal_length', 2.0))
-        sepal_width = float(self.get_argument('sepal_width', 2.0))
-        petal_length = float(self.get_argument('petal_length', 2.0))
-        petal_width = float(self.get_argument('petal_width', 2.0))
-        self.set_result(result={"label": 11})
+        sepal_length = float(self.get_argument('sepal_length', '2.0'))
+        sepal_width = float(self.get_argument('sepal_width', '2.0'))
+        petal_length = float(self.get_argument('petal_length', '2.0'))
+        petal_width = float(self.get_argument('petal_width', '2.0'))
 
         # 预测
         model = options.models.get(USE_MODEL_NAME, None)
