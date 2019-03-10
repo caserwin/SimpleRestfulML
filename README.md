@@ -14,6 +14,11 @@
 ## 2. 部署说明
 依赖组件：1. mysql&emsp;&emsp;2. redis&emsp;&emsp;3. python 3.6&emsp;&emsp;4. tornado
 
+部署时候要需要解决包依赖问题，
+cur_dir = sys.path[0]
+os.sys.path.append(os.path.join(cur_dir, "src"))
+
+
 ### 2.1 MySQL部署说明
 
 1 启动/停止mysql服务
@@ -47,6 +52,12 @@ host=localhost
 port=6379
 db=0
 ```
+
+在redis-5.0.3/src下后台启动redis服务：
+```
+./redis-server &
+```
+
 
 ## 3. 接口示例
 ### 3.1 /description

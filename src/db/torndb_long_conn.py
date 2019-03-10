@@ -88,7 +88,7 @@ def trace_performance(func):
         logger = logging.getLogger("performance")
         logger.debug(
             "prepare execute [%s]",
-            list((i for i in args if type(i) in (str, unicode))).pop(0)[:].replace('\n', ' ')
+            list((i for i in args if type(i) in [str])).pop(0)[:].replace('\n', ' ')
         )
 
         ts = time.time()
@@ -96,7 +96,7 @@ def trace_performance(func):
         te = time.time()
 
         logstr = "[DB] [%s] [%f]" % \
-                 (list((i for i in args if type(i) in (str, unicode))).pop(0)[:].replace('\n', ' '), te - ts)
+                 (list((i for i in args if type(i) in [str])).pop(0)[:].replace('\n', ' '), te - ts)
 
         if te - ts >= 0.8:
             logger.error(logstr)
@@ -417,7 +417,7 @@ if MySQLdb is not None:
         field_types.append(FIELD_TYPE.VARCHAR)
 
     for field_type in field_types:
-        CONVERSIONS[field_type] = [(FLAG.BINARY, str)] + CONVERSIONS[field_type]
+        CONVERSIONS[field_type] = [(FLAG.BINARY, str)] + [CONVERSIONS[field_type]]
 
     # Alias some common MySQL exceptions
     IntegrityError = MySQLdb.IntegrityError

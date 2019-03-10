@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import json
-
+import simplejson as json
 from tornado.web import RequestHandler
 from src.utils.timeout import TimeoutException
 from src.utils.timeout import timeout
@@ -38,10 +37,7 @@ class BaseHandler(RequestHandler):
             self._error_message = 'timeout error, func exec too long'
         except Exception as e:
             self._status = 1
-            if e.message:
-                self._error_message = e.message
-            else:
-                self._error_message = 'API handler error'
+            self._error_message = e
             raise e
 
     # set 600 seconds timeout

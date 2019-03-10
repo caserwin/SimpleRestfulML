@@ -1,0 +1,18 @@
+load model /Users/cisco/workspace/restfulML/model/lr_iris.model
+/Users/cisco/.pyenv/versions/3.6.5/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator LogisticRegression from version 0.19.1 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+load model /Users/cisco/workspace/restfulML/model/dt_iris.model
+/Users/cisco/.pyenv/versions/3.6.5/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator DecisionTreeClassifier from version 0.19.1 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+start api server at 12340
+
+        CREATE TABLE IF NOT EXISTS `error500_test` 
+        (timestamp int(11) NOT NULL ,date char(30) NOT NULL ,col1 float(4,2) NOT NULL ,col2 float(4,2) NOT NULL , PRIMARY KEY (`timestamp`)) 
+        ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+        
+[I 190310 20:15:17 torndb_long_conn:106] [DB] [         CREATE TABLE IF NOT EXISTS `error500_test`          (timestamp int(11) NOT NULL ,date char(30) NOT NULL ,col1 float(4,2) NOT NULL ,col2 float(4,2) NOT NULL , PRIMARY KEY (`timestamp`))          ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;         ] [0.000299]
+INSERT IGNORE INTO error500_test (`timestamp`, `date`, `col1`, `col2`) VALUES ('1539100860', '2018-10-10 00:01:00', '1.1', '2.1'),('1539100920', '2018-10-10 00:02:00', '1.2', '2.2'),('1539100980', '2018-10-10 00:03:00', '1.3', '2.3'),('1539101040', '2018-10-10 00:04:00', '1.4', '2.4'),('1539101100', '2018-10-10 00:05:00', '1.5', '2.5')
+[I 190310 20:15:17 torndb_long_conn:106] [DB] [INSERT IGNORE INTO error500_test (`timestamp`, `date`, `col1`, `col2`) VALUES ('1539100860', '2018-10-10 00:01:00', '1.1', '2.1'),('1539100920', '2018-10-10 00:02:00', '1.2', '2.2'),('1539100980', '2018-10-10 00:03:00', '1.3', '2.3'),('1539101040', '2018-10-10 00:04:00', '1.4', '2.4'),('1539101100', '2018-10-10 00:05:00', '1.5', '2.5')] [0.000302]
+[I 190310 20:15:17 web:2246] 200 GET /dbtest/train_data (127.0.0.1) 36.64ms
+[I 190310 20:15:20 web:2246] 200 GET /iris/dt_predict (127.0.0.1) 0.90ms
+[I 190310 20:15:21 web:2246] 200 GET /iris/dt_predict (127.0.0.1) 0.78ms

@@ -13,5 +13,8 @@ def store_model(model, filename):
 
 def read_model(filename):
     fr = open(filename, 'rb')
-    print("load model {filename}".format(filename = filename))
-    return pickle.load(fr)
+    print("load model {filename}".format(filename=filename))
+    try:
+        return pickle.load(fr, encoding='latin1')
+    except:
+        return pickle.load(fr)
