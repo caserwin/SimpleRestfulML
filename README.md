@@ -218,7 +218,7 @@ POST请求：
 如果用户训练了自己的模型，那么如何使用？以下步骤：
 
 1. 建议把训练的模型类放在src/train下，类似dt_train.py和lr_train.py。
-2. 把dump()的模型示例，通过upload() 方式或直接放到model文件夹下。
+2. pickle.dump()训练模型对象，通过upload()方式或直接放到model文件夹下。
 3. 继承 BaseHandler，实现自定义的Handler。
 4. 在server.py import模型的训练类。类似：
 ```
