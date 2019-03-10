@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from ConfigParser import RawConfigParser
+from configparser import RawConfigParser
 
 
 class Configuration(object):

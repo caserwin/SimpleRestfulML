@@ -3,7 +3,7 @@
 
 import json
 from src.utils import config
-from torndb_long_conn import Connection
+from src.db.torndb_long_conn import Connection
 
 
 class MySQLHelper(object):
