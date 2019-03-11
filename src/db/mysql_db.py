@@ -1,6 +1,5 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
-
+# -*- coding: utf-8 -*-a
 import json
 from src.utils import config
 from src.db.torndb_long_conn import Connection
@@ -52,6 +51,7 @@ class MySQLHelper(object):
 
     # @classmethod
     def insert_batch(cls, tablename, batch_params):
+        global key_strs
         value_batch = []
         for param in batch_params:
             keys = param.keys()

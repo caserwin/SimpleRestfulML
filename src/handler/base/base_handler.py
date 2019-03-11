@@ -13,19 +13,19 @@ class BaseHandler(RequestHandler):
         self._error_message = ""
         self._result = {}
 
-    def head(self, *args, **kwargs):
+    def head(self):
         self.run()
         self.do_response()
 
-    def get(self, *args, **kwargs):
+    def get(self):
         self.run()
         self.do_response()
 
-    def post(self, *args, **kwargs):
+    def post(self):
         self.run()
         self.do_response()
 
-    def options(self, *args, **kwargs):
+    def options(self):
         self.run()
         self.do_response()
 

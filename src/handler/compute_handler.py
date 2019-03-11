@@ -9,9 +9,9 @@ class SimpleComputeHandler(BaseHandler):
         super(SimpleComputeHandler, self).__init__(application, request, **kwargs)
 
     def do_action(self):
-        a = int(self.get_argument('a', 1))
-        b = int(self.get_argument('b', 1))
-        ctype = int(self.get_argument('ctype', 0))
+        a = int(self.get_argument('a', '1'))
+        b = int(self.get_argument('b', '1'))
+        ctype = int(self.get_argument('ctype', '0'))
         compute = ComputeService()
 
         if ctype == 0:
