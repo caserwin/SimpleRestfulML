@@ -214,19 +214,26 @@ POST请求：
 {"status": 0, "message": "upload lr_iris.model success! server has reload lr_iris.model"}
 ```
 
-### 3.9 新增加模型类
-如果用户训练了自己的模型，那么如何使用？以下步骤：
+### 3.9 使用
+有两种使用方式：
+
+第一、更新已有的模型，步骤
+
+1. pickle.dump()训练模型对象，通过upload()方式放到model文件夹下。
+2. 或者直接放到model文件夹下。通过reload()加载到内存。
+
+第二、新增加模型，步骤
 
 1. 建议把训练的模型类放在src/train下，类似dt_train.py和lr_train.py。
 2. pickle.dump()训练模型对象，通过upload()方式或直接放到model文件夹下。
-3. 继承 BaseHandler，实现自定义的Handler。
-4. 在server.py import模型的训练类。类似：
+3. 在server.py import模型的训练类。类似：
 ```
 # noinspection PyUnresolvedReferences
 from src.train.lr_train import LogisticRegressionTrain
 # noinspection PyUnresolvedReferences
 from src.train.dt_train import DecisionTreeTrain
 ``` 
+4. 继承 BaseHandler，实现自定义的Handler。
 5. 重启server。
 
 ## 4. 技术细节说明
