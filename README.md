@@ -9,9 +9,31 @@
 5. 基于sklearn 中iris 数据集，训练决策树、逻辑回归。用于功能示例。
 6. 包含mysql/redis 基本操作示例。
 
+## 2. 使用
+
+有两种使用方式：
+
+第一、更新已有的模型，步骤
+
+1. pickle.dump()训练模型对象，通过upload()方式放到model文件夹下。
+2. 或者直接放到model文件夹下。通过reload()加载到内存。
+
+第二、新增加模型，步骤
+
+1. 建议把训练的模型类放在src/train下，类似dt_train.py和lr_train.py。
+2. pickle.dump()训练模型对象，通过upload()方式或直接放到model文件夹下。
+3. 在server.py import模型的训练类。类似：
+```
+# noinspection PyUnresolvedReferences
+from src.train.lr_train import LogisticRegressionTrain
+# noinspection PyUnresolvedReferences
+from src.train.dt_train import DecisionTreeTrain
+``` 
+4. 继承 BaseHandler，实现自定义的Handler。
+5. 重启server。
 以下是部署说明和使用示例：
 
-## 2. 部署说明
+## 3. 部署说明
 依赖组件：1. mysql&emsp;&emsp;2. redis&emsp;&emsp;3. python 3.6&emsp;&emsp;4. tornado
 
 导入项目依赖package，命令：
@@ -19,7 +41,7 @@
 pip install -r requirements.txt
 ```
 
-### 2.1 MySQL部署说明
+### 3.1 MySQL部署说明
 
 1 启动/停止mysql服务
 ```
@@ -43,7 +65,7 @@ create database fbprop;
 GRANT ALL ON fbprop.* TO 'xyd'@'localhost';
 ```
 
-### 2.2 Redis 部署说明
+### 3.2 Redis 部署说明
 redis 默认端口是6379，且数据库是由一个整数索引标识，而非数据库名称。默认情况下，一个客户端连接到数据库0。
 所以在app.conf中配置：
 ```
@@ -58,7 +80,7 @@ db=0
 ./redis-server &
 ```
 
-### 2.3 bash 命令
+### 3.3 bash 命令
 
 * 启动服务: ```sh server.sh start```
 ```
@@ -85,8 +107,8 @@ db=0
 服务停止成功
 ```
 
-## 3. 接口示例
-### 3.1 /description
+## 4. 接口示例
+### 4.1 /description
 GET请求：
 ```
 127.0.0.1:12340/description
@@ -98,7 +120,7 @@ GET请求：
 {"status": 0, "result": "this is restful API for machine learning. welcome !"}
 ```
 
-### 3.2 /compute
+### 4.2 /compute
 GET请求：
 ```
 127.0.0.1:12340/compute?a=1&b=2&ctype=1
@@ -116,7 +138,7 @@ GET请求：
 {"status": 0, "result": -1}
 ```
 
-### 3.3 /iris/lr_predict
+### 4.3 /iris/lr_predict
 GET请求：
 ```
 127.0.0.1:12340/iris/lr_predict
@@ -136,7 +158,7 @@ GET请求：
 {"status": 0, "model": "lr_iris.model", "version": 1.0, "label": "versicolor"}
 ```
 
-### 3.4 /iris/dt_predict
+### 4.4 /iris/dt_predict
 GET请求：
 ```
 127.0.0.1:12340/iris/dt_predict
@@ -154,7 +176,7 @@ GET请求：
 ```
 {"status": 0, "model": "dt_iris.model", "version": 1.0, "label": "virginica"}
 ```
-### 3.5 /dbtest/train_data
+### 4.5 /dbtest/train_data
 GET请求：
 ```
 127.0.0.1:12340/dbtest/train_data
@@ -165,7 +187,7 @@ GET请求：
 ```
 {"status": 0, "message": "succeed to insert ignore 5 rows to error500_test"}
 ```
-### 3.6 /dbtest/predict_data
+### 4.6 /dbtest/predict_data
 GET请求：
 ```
 127.0.0.1:12340/dbtest/predict_data
@@ -180,7 +202,7 @@ GET请求：
 ```
 {"status": 0, "true value": 0.5, "reference": 1.1, "label": 0}
 ```
-### 3.7 /reload_model
+### 4.7 /reload_model
 GET请求：
 ```
 127.0.0.1:12340/reload_model
@@ -200,7 +222,7 @@ GET请求：
 {"status": 0, "message": "server has reload lr_iris.model"}
 ```
 
-### 3.8 /upload_model
+### 4.8 /upload_model
 POST请求：
 ```
 127.0.0.1:12340/upload_model
@@ -214,27 +236,5 @@ POST请求：
 {"status": 0, "message": "upload lr_iris.model success! server has reload lr_iris.model"}
 ```
 
-### 3.9 使用
-有两种使用方式：
-
-第一、更新已有的模型，步骤
-
-1. pickle.dump()训练模型对象，通过upload()方式放到model文件夹下。
-2. 或者直接放到model文件夹下。通过reload()加载到内存。
-
-第二、新增加模型，步骤
-
-1. 建议把训练的模型类放在src/train下，类似dt_train.py和lr_train.py。
-2. pickle.dump()训练模型对象，通过upload()方式或直接放到model文件夹下。
-3. 在server.py import模型的训练类。类似：
-```
-# noinspection PyUnresolvedReferences
-from src.train.lr_train import LogisticRegressionTrain
-# noinspection PyUnresolvedReferences
-from src.train.dt_train import DecisionTreeTrain
-``` 
-4. 继承 BaseHandler，实现自定义的Handler。
-5. 重启server。
-
-## 4. 技术细节说明
+## 5. 技术细节说明
 参考：
