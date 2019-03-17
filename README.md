@@ -111,7 +111,7 @@ db=0
 ### 4.1 /description
 GET请求：
 ```
-127.0.0.1:12340/description
+127.0.0.1:7250/description
 ```
 说明：返回restful API说明
 
@@ -123,7 +123,7 @@ GET请求：
 ### 4.2 /compute
 GET请求：
 ```
-127.0.0.1:12340/compute?a=1&b=2&ctype=1
+127.0.0.1:7250/compute?a=1&b=2&ctype=1
 ```
 
 说明：加减乘除操作，输入三个参数a、b、ctype。
@@ -141,7 +141,7 @@ GET请求：
 ### 4.3 /iris/lr_predict
 GET请求：
 ```
-127.0.0.1:12340/iris/lr_predict
+127.0.0.1:7250/iris/lr_predict
 ```
 
 说明：基于逻辑回归训练的模型，有4个参数，且默认为：
@@ -161,7 +161,7 @@ GET请求：
 ### 4.4 /iris/dt_predict
 GET请求：
 ```
-127.0.0.1:12340/iris/dt_predict
+127.0.0.1:7250/iris/dt_predict
 ```
 说明：基于决策树训练的模型，有4个参数，且默认为：
 ```
@@ -179,7 +179,7 @@ GET请求：
 ### 4.5 /dbtest/train_data
 GET请求：
 ```
-127.0.0.1:12340/dbtest/train_data
+127.0.0.1:7250/dbtest/train_data
 ```
 说明：mysql 建表和写入示例，redis写入示例。
 
@@ -190,7 +190,7 @@ GET请求：
 ### 4.6 /dbtest/predict_data
 GET请求：
 ```
-127.0.0.1:12340/dbtest/predict_data
+127.0.0.1:7250/dbtest/predict_data
 ```
 说明：redis 读取示例。有2个参数，且默认参数为：
 ```
@@ -205,7 +205,7 @@ GET请求：
 ### 4.7 /reload_model
 GET请求：
 ```
-127.0.0.1:12340/reload_model
+127.0.0.1:7250/reload_model
 ```
 说明：加载model文件夹下，全部/指定的模型文件。有一个参数，且默认为：
 ```
@@ -225,7 +225,7 @@ GET请求：
 ### 4.8 /upload_model
 POST请求：
 ```
-127.0.0.1:12340/upload_model
+127.0.0.1:7250/upload_model
 ```
 
 说明：上传模型文件，到model文件夹下。并且把上传的模型更新到内存。
