@@ -38,19 +38,14 @@ class MySQLHelper(object):
 
     @classmethod
     def execute(cls, sql, *parameters):
-        print(sql)
         return cls._instance.execute(sql, *parameters)
 
     @classmethod
-    def gen_insert(cls, tablename, rowdict, replace=False):
-        return cls._instance.gen_insert_sql(tablename, rowdict, replace)
+    def insert_dict(cls, tablename, rowdict, replace=False):
+        return cls._instance.insert_dict(tablename, rowdict, replace)
 
     @classmethod
-    def insert_dict(cls, tablename, rowdict):
-        return cls._instance.insert_dict(tablename, rowdict)
-
-    # @classmethod
-    def insert_batch(cls, tablename, batch_params):
+    def insert_batch(cls, tablename, batch_params, replace=False):
         global key_strs
         value_batch = []
         for param in batch_params:
@@ -60,14 +55,12 @@ class MySQLHelper(object):
                 ["""'%s'""" % "%s" % param.get(key) for key in keys])
             value_batch.append(value_strs)
 
-        sql = """INSERT IGNORE INTO %s (%s) VALUES %s""" % (tablename, key_strs, ",".join(value_batch))
+        sql = """%s INTO %s (%s) VALUES %s""" % (
+            "REPLACE" if replace else "INSERT IGNORE", tablename, key_strs, ",".join(value_batch))
         print(sql)
         return cls._instance.execute(sql)
 
     def update_dict(self, tablename, rowdict, where):
-        return self._instance.update_dict(tablename, rowdict, where)
-
-    def update_dict2(self, tablename, rowdict, where):
         return self._instance.update_dict(tablename, rowdict, where)
 
     def transaction(self, query, parameters):
