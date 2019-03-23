@@ -4,6 +4,7 @@ import simplejson as json
 from tornado.web import RequestHandler
 from src.utils.timeout import TimeoutException
 from src.utils.timeout import timeout
+import time
 
 
 class BaseHandler(RequestHandler):
@@ -12,6 +13,7 @@ class BaseHandler(RequestHandler):
         self._status = 0
         self._error_message = ""
         self._result = {}
+        self.start = time.time()
 
     def head(self):
         self.run()
@@ -51,6 +53,7 @@ class BaseHandler(RequestHandler):
     def do_response(self):
         response = {
             "status": self._status,
+            "run time": time.time() - self.start,
         }
 
         if self._error_message != '':

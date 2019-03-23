@@ -29,4 +29,4 @@ class LRPredictHandler(BaseHandler):
 
         index = model.predict(np.array([[sepal_length, sepal_width, petal_length, petal_width]]))[0]
         target = model.get_target_name()[index]
-        self.set_result(result={"label": target, "model": USE_MODEL_NAME, "version": model.version})
+        self.set_result(result={"message": {"label": target, "model": USE_MODEL_NAME, "version": model.version}})

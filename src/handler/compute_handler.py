@@ -16,20 +16,20 @@ class SimpleComputeHandler(BaseHandler):
 
         if ctype == 0:
             result = compute.plus(a, b)
-            self.set_result(result={"result": result})
+            self.set_result(result={"message": result})
             return
         elif ctype == 1:
             result = compute.minus(a, b)
-            self.set_result(result={"result": result})
+            self.set_result(result={"message": result})
             return
         elif ctype == 2:
             result = compute.multiply(a, b)
-            self.set_result(result={"result": result})
+            self.set_result(result={"message": result})
             return
         elif ctype == 3:
             if b == 0:
                 self.set_error(error_code=Error.ERROR_CODE1, error_message="b can not be 0")
             else:
                 result = compute.divide(a, b)
-                self.set_result(result={"result": result})
+                self.set_result(result={"message": result})
             return
