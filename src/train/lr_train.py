@@ -4,7 +4,7 @@
 import os
 from sklearn import datasets
 from sklearn.linear_model import LogisticRegression
-from src.utils.model_utils import store_model
+from src.utils.tools import store_model
 
 module_path = os.path.abspath(os.path.join(os.pardir, os.pardir))
 model_path = os.path.join(module_path, 'model')

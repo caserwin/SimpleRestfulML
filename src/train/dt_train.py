@@ -3,7 +3,7 @@
 # @Author  : yidxue
 import os
 from sklearn import datasets
-from src.utils.model_utils import store_model
+from src.utils.tools import store_model
 from sklearn import tree
 
 module_path = os.path.abspath(os.path.join(os.pardir, os.pardir))

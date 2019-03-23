@@ -2,7 +2,7 @@
 # @Time    : 2019/3/5 上午9:55
 # @Author  : yidxue
 from src.handler.base.base_handler import BaseHandler
-from src.utils.model_utils import read_model
+from src.utils.tools import read_model
 from tornado.options import options
 import os
 

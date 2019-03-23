@@ -2,7 +2,7 @@
 # @Time    : 2019/3/6 上午10:16
 # @Author  : yidxue
 from tornado.options import options
-from src.utils.model_utils import read_model
+from src.utils.tools import read_model
 import os
 
 module_path = os.path.abspath(os.path.join(os.curdir))
