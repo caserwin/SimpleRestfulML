@@ -17,7 +17,7 @@ class PredictRawDataHandler(BaseHandler):
         # predict
         rc = RedisClient()
         res_ls = rc.get_cache_data("error500")
-        res_dic = {json.loads(item)["timestamp"]: float(json.loads(item)["col1"]) for item in res_ls}
+        res_dic = {item["timestamp"]: float(item["col1"]) for item in res_ls}
         print(res_dic)
 
         pred_value = res_dic.get(timestamp, -1)

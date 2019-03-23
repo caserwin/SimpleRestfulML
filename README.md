@@ -117,7 +117,11 @@ GET请求：
 
 返回：
 ```
-{"status": 0, "result": "this is restful API for machine learning. welcome !"}
+{
+	"status": 0,
+	"run time": 0.00018286705017089844,
+	"message": "this is restful API for machine learning. welcome !"
+}
 ```
 
 ### 4.2 /compute
@@ -135,7 +139,11 @@ GET请求：
 
 返回：
 ```
-{"status": 0, "result": -1}
+{
+	"status": 0,
+	"run time": 0.000209808349609375,
+	"message": -1
+}
 ```
 
 ### 4.3 /iris/lr_predict
@@ -155,7 +163,15 @@ GET请求：
 
 返回
 ```
-{"status": 0, "model": "lr_iris.model", "version": 1.0, "label": "versicolor"}
+{
+	"status": 0,
+	"run time": 0.0004200935363769531,
+	"message": {
+		"label": "versicolor",
+		"model": "lr_iris.model",
+		"version": 3.0
+	}
+}
 ```
 
 ### 4.4 /iris/dt_predict
@@ -174,7 +190,15 @@ GET请求：
 
 返回
 ```
-{"status": 0, "model": "dt_iris.model", "version": 1.0, "label": "virginica"}
+{
+	"status": 0,
+	"run time": 0.0025141239166259766,
+	"message": {
+		"label": "virginica",
+		"model": "dt_iris.model",
+		"version": 1.0
+	}
+}
 ```
 ### 4.5 /dbtest/train_data
 GET请求：
@@ -185,7 +209,11 @@ GET请求：
 
 返回
 ```
-{"status": 0, "message": "succeed to insert ignore 5 rows to error500_test"}
+{
+	"status": 0,
+	"run time": 0.12604689598083496,
+	"message": "succeed to insert ignore 5 rows to error500_test"
+}
 ```
 ### 4.6 /dbtest/predict_data
 GET请求：
@@ -200,7 +228,15 @@ GET请求：
 
 返回
 ```
-{"status": 0, "true value": 0.5, "reference": 1.1, "label": 0}
+{
+	"status": 0,
+	"run time": 0.006543874740600586,
+	"message": {
+		"label": 0,
+		"reference": 1.1,
+		"true value": 0.5
+	}
+}
 ```
 ### 4.7 /reload_model
 GET请求：
@@ -213,13 +249,21 @@ GET请求：
 ```
 返回
 ```
-{"status": 0, "message": "server has reload all models"}
+{
+	"status": 0,
+	"run time": 0.002156972885131836,
+	"message": "server has reload all models"
+}
 ```
 
 如果指定参数：```127.0.0.1:12340/reload_model?modelname=lr_iris.model```。
 返回：
 ```
-{"status": 0, "message": "server has reload lr_iris.model"}
+{
+	"status": 0,
+	"run time": 0.001062154769897461,
+	"message": "server has reload lr_iris.model"
+}
 ```
 
 ### 4.8 /upload_model
@@ -233,8 +277,12 @@ POST请求：
 
 返回
 ```
-{"status": 0, "message": "upload lr_iris.model success! server has reload lr_iris.model"}
+{
+	"status": 0,
+	"run time": 0.002052045678986552,
+	"message": "upload lr_iris.model success! server has reload lr_iris.model"
+}
 ```
 
 ## 5. 技术细节说明
-参考：
+参考 [模型部署](https://caserwin.gitbooks.io/machine-learning/content/27.html)

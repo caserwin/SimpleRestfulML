@@ -5,10 +5,10 @@ load model /Users/cisco/workspace/restfulML/model/dt_iris.model
 /Users/cisco/.pyenv/versions/3.6.5/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator DecisionTreeClassifier from version 0.19.1 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
   UserWarning)
 start api server at 7250
-[I 190323 18:48:06 web:2246] 200 GET /iris/lr_predict (127.0.0.1) 2.04ms
-[I 190323 18:49:28 autoreload:202] /Users/cisco/workspace/restfulML/src/handler/compute_handler.py modified; restarting server
-/Users/cisco/.pyenv/versions/3.6.5/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator LogisticRegression from version 0.19.1 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
-  UserWarning)
-/Users/cisco/.pyenv/versions/3.6.5/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator DecisionTreeClassifier from version 0.19.1 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
-  UserWarning)
-[I 190323 18:49:36 web:2246] 200 GET /iris/lr_predict (127.0.0.1) 2.22ms
+{'2018-10-10 00:04:00': 1.4, '2018-10-10 00:01:00': 1.1, '2018-10-10 00:05:00': 1.5, '2018-10-10 00:02:00': 1.2, '2018-10-10 00:03:00': 1.3}
+[I 190323 21:31:02 web:2246] 200 GET /dbtest/predict_data (127.0.0.1) 8.02ms
+load model /Users/cisco/workspace/restfulML/model/lr_iris.model
+load model /Users/cisco/workspace/restfulML/model/dt_iris.model
+[I 190323 21:31:37 web:2246] 200 GET /reload_model (127.0.0.1) 2.75ms
+load model /Users/cisco/workspace/restfulML/model/lr_iris.model
+[I 190323 21:32:12 web:2246] 200 GET /reload_model?modelname=lr_iris.model (127.0.0.1) 1.62ms

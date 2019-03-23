@@ -28,12 +28,11 @@ class TrainRawDataHandler(BaseHandler):
         rc.delete_key("error500")
 
         # save to redis
-        values = [{
-            "key": "error500_" + str(value.get("date", "0")),
+        values = {"error500_" + str(value.get("date", "0")): {
             "timestamp": str(value.get("date", "0")),
             "col1": str(value.get("col1", 1.0)),
             "col2": str(value.get("col2", 2.0)),
-        } for value in raw_values]
+        } for value in raw_values}
         rc.set_cache_data(values)
 
         # mysql create table
