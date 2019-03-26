@@ -13,7 +13,7 @@ from src.utils import config
 from load import load_models
 
 port = int(config.get("global", "port"))
-debug_mode = int(config.get("global", "server_debug_mode"))
+debug_mode = int(config.get("global", "debug_mode"))
 process_num = int(config.get("global", "process_num"))
 
 settings = {

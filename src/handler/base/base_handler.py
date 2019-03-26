@@ -1,13 +1,17 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import time
+from typing import Optional, Awaitable
 import simplejson as json
 from tornado.web import RequestHandler
 from src.utils.timeout import TimeoutException
 from src.utils.timeout import timeout
-import time
-
 
 class BaseHandler(RequestHandler):
+
+    def data_received(self, chunk: bytes) -> Optional[Awaitable[None]]:
+        pass
+
     def __init__(self, application, request, **kwargs):
         super(BaseHandler, self).__init__(application, request, **kwargs)
         self._status = 0
@@ -53,6 +57,7 @@ class BaseHandler(RequestHandler):
     def do_response(self):
         response = {
             "status": self._status,
+            "start time": int(self.start),
             "run time": time.time() - self.start,
         }
 
