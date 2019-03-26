@@ -8,6 +8,7 @@
 4. 模型reload，可以直接把训练好的模型放到model文件夹下，并且根据传入的参数call reload API，用于reload 全部/指定 模型到内存。
 5. 基于sklearn 中iris 数据集，训练决策树、逻辑回归。用于功能示例。
 6. 包含mysql/redis 基本操作示例。
+7. 多进程方式启动 tornado，并行处理 request。
 
 ## 2. 使用
 
