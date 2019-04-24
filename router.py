@@ -10,6 +10,7 @@ from src.handler.upload_model_handler import FileUploadHandler
 
 from src.handler.dbtest.predict_raw_data_handler import PredictRawDataHandler
 from src.handler.dbtest.train_raw_data_handler import TrainRawDataHandler
+from src.handler.dbtest.insert_opentsdb_handler import OpenTSDBRawDataHandler
 from src.handler.iris.lr_predict_handler import LRPredictHandler
 from src.handler.iris.dt_predict_handler import DTPredictHandler
 
@@ -22,6 +23,7 @@ url_map = [
     (r"/iris/dt_predict", DTPredictHandler),
     (r"/dbtest/train_data", TrainRawDataHandler),
     (r"/dbtest/predict_data", PredictRawDataHandler),
+    (r"/dbtest/insert_tsdb", OpenTSDBRawDataHandler),
     (r"/reload_model", ReloadModelHandler),
     (r"/upload_model", FileUploadHandler)
 ]

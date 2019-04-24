@@ -3,7 +3,6 @@
 # @Author  : yidxue
 from src.db.redis_db import RedisClient
 from src.handler.base.base_handler import BaseHandler
-import json
 
 
 class PredictRawDataHandler(BaseHandler):
