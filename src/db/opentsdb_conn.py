@@ -29,19 +29,21 @@ class OpenTSDBClient(object):
 
     def bulk_insert(self, data_ls, bulk_size):
         ls = []
-        res = None
         for item in data_ls:
             ls.append(item)
             if len(ls) == bulk_size:
                 self.session.post(url=self.opentsdb_save_url, json=ls)
                 ls = []
-            r = self.session.post(url=self.opentsdb_save_url, json=ls)
-            try:
-                json.loads(r.text)
-                res = {
-                    "rows": len(data_ls),
-                    "bulk_size": bulk_size
-                }
-            except:
-                res = r.text
+        r = self.session.post(url=self.opentsdb_save_url, json=ls)
+        try:
+            json.loads(r.text)
+            res = {
+                "rows": len(data_ls),
+                "bulk_size": bulk_size
+            }
+        except:
+            res = r.text
         return res
+
+    def close(self):
+        self.session.close()
