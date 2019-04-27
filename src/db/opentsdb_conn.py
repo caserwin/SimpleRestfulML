@@ -45,5 +45,13 @@ class OpenTSDBClient(object):
             res = r.text
         return res
 
+    def get_data_by_post(self, cond_dic):
+        r = requests.post("http://{host}:{port}/api/query".format(host=self.host, port=self.port), json=cond_dic)
+        if len(r.json()) > 0:
+            dps = r.json()[0]['dps']
+            return dps
+        else:
+            return None
+
     def close(self):
         self.session.close()
