@@ -46,6 +46,28 @@ class OpenTSDBClient(object):
         return res
 
     def get_data_by_post(self, cond_dic):
+        """
+        使用示例：
+            query_cond_dic = {
+            "start": pass_timestamp,
+            "end": now_timestamp,
+            "queries": [
+                {
+                    "aggregator": "sum",
+                    "metric": "sys.error500.raw",
+                    "tags": {
+                        "component": args[0],
+                        "servertype": args[1],
+                        "cluster": args[2],
+                        "errortype": args[3]
+                    }
+                }
+            ]
+        }
+
+        oc = OpenTSDBClient()
+        raw_data = oc.get_data_by_post(query_cond_dic)
+        """
         r = requests.post("http://{host}:{port}/api/query".format(host=self.host, port=self.port), json=cond_dic)
         if len(r.json()) > 0:
             dps = r.json()[0]['dps']
