@@ -5,10 +5,6 @@ import tornado.ioloop
 import tornado.locale
 import tornado.web
 from tornado.options import define, options, parse_command_line
-# noinspection PyUnresolvedReferences
-from src.train.lr_train import LogisticRegressionTrain
-# noinspection PyUnresolvedReferences
-from src.train.dt_train import DecisionTreeTrain
 from src.utils import config
 from load import load_models
 

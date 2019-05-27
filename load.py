@@ -11,4 +11,6 @@ model_path = os.path.join(module_path, 'model')
 
 def load_models():
     for model_name in os.listdir(model_path):
+        if model_name.find(".model") == -1:
+            continue
         options.models[model_name] = read_model(os.path.join(model_path, model_name))

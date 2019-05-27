@@ -5,6 +5,6 @@ load model /Users/cisco/workspace/restfulML/model/dt_iris.model
 /Users/cisco/.pyenv/versions/3.6.5/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator DecisionTreeClassifier from version 0.19.1 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
   UserWarning)
 start api server at 7250
-[I 190328 14:00:27 process:126] Starting 8 processes
-[W 190328 14:00:32 web:2246] 404 GET /error500/predict_data?date=2019-03-27%2000:55:00&component=component1&servertype=stype1&cluster=B&errortype=etype1&model_run_date=2019-03-28&model_train_days=100&point_num=100&is_show=true (127.0.0.1) 3.12ms
-[W 190328 14:00:33 web:2246] 404 GET /error500/predict_data?date=2019-03-27%2000:55:00&component=component1&servertype=stype1&cluster=B&errortype=etype1&model_run_date=2019-03-28&model_train_days=100&point_num=100&is_show=true (127.0.0.1) 0.52ms
+[I 190509 11:06:51 process:126] Starting 8 processes
+[W 190509 11:09:12 web:2246] 404 GET /description (127.0.0.1) 4.73ms
+[I 190509 11:09:59 web:2246] 200 GET /test/description (127.0.0.1) 2.67ms

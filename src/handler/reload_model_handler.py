@@ -19,6 +19,8 @@ class ReloadModelHandler(BaseHandler):
         model_name = self.get_argument('modelname', None)
         if model_name is None:
             for model_name in os.listdir(model_path):
+                if model_name.find(".model") == -1:
+                    continue
                 model = read_model(os.path.join(model_path, model_name))
                 options.models[model_name] = model
             self.set_result(result={"message": "server has reload all models"})
