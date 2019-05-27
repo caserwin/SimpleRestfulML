@@ -33,12 +33,12 @@ def read_model(filename):
     print("load model {filename}".format(filename=filename))
     try:
         return pickle.load(fr, encoding='latin1')
+    except UnicodeDecodeError:
+        return pickle.load(fr)
     except ModuleNotFoundError:
         return RenameUnpickler(fr).load()
     except AttributeError:
         return RenameUnpickler(fr).load()
-    except:
-        return pickle.load(fr)
 
 
 def check_json(input_str):
