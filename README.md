@@ -16,28 +16,40 @@
 
 第一、更新已有的模型，步骤
 
-1. pickle.dump()训练模型对象，通过upload()方式放到model文件夹下。
-2. 或者直接放到model文件夹下。通过reload()加载到内存。
+1. 通过pickle.dump()训练模型的对象，使用upload()接口上传模型到service中。
+2. 直接把pickle文件放到model文件夹下。通过reload()加载到内存。
 
 第二、新增加模型，步骤
 
 1. 建议把训练的模型类放在src/train下，类似dt_train.py和lr_train.py。
-2. pickle.dump()训练模型对象，通过upload()方式或直接放到model文件夹下。
+2. 使用upload()接口上传模型到service或把model直接放到model文件夹下。
 3. 在server.py import模型的训练类。类似：
 ```
-# noinspection PyUnresolvedReferences
-from src.train.lr_train import LogisticRegressionTrain
-# noinspection PyUnresolvedReferences
-from src.train.dt_train import DecisionTreeTrain
+class RenameUnpickler(pickle.Unpickler):
+    """
+    https://stackoverflow.com/questions/27732354/unable-to-load-files-using-pickle-and-multiple-modules
+    """
+
+    def find_class(self, module, name):
+        if name == 'LogisticRegressionTrain':
+            from src.train.lr_train import LogisticRegressionTrain
+            return LogisticRegressionTrain
+        if name == 'DecisionTreeTrain':
+            from src.train.dt_train import DecisionTreeTrain
+            return DecisionTreeTrain
+
+        return super(RenameUnpickler, self).find_class(module, name)
 ``` 
 4. 继承 BaseHandler，实现自定义的Handler。
-5. 重启server。
+5. 重启 service。
 以下是部署说明和使用示例：
 
 ## 3. 部署说明
-依赖组件：1. mysql&emsp;&emsp;2. redis&emsp;&emsp;3. python 3.6&emsp;&emsp;4. tornado
+依赖组件：1. MySQL&emsp;&emsp;2. redis&emsp;&emsp;3. python 3.6&emsp;&emsp;4. tornado&emsp;&emsp;5. OpenTSDB
 
-导入项目依赖package，命令：
+这里MySQL、OpenTSDB、redis 非必备组件，只是有些示例接口中用到了。
+
+导入依赖package：
 ```
 pip install -r requirements.txt
 ```
@@ -206,7 +218,7 @@ GET请求：
 ```
 127.0.0.1:7250/dbtest/train_data
 ```
-说明：mysql 建表和写入示例，redis写入示例。
+说明：mysql 建表和写入，redis写入。
 
 返回
 ```
@@ -221,7 +233,7 @@ GET请求：
 ```
 127.0.0.1:7250/dbtest/predict_data
 ```
-说明：redis 读取示例。有2个参数，且默认参数为：
+说明：redis 读取。有2个参数，且默认为：
 ```
      timestamp = self.get_argument('timestamp', "2018-10-10 00:01:00")
      value = float(self.get_argument('value', 0.5))
@@ -288,4 +300,4 @@ POST请求：
 ## 5. 技术细节说明
 1. [模型部署](https://caserwin.gitbooks.io/machine-learning/content/27.html)
 2. [异步和同步、阻塞和非阻塞](https://www.zhihu.com/question/19732473/answer/20851256)
-3. [tornado 多进程启动]()
+3. [tornado 并发-多进程](https://caserwin.gitbooks.io/machine-learning/content/18.html)
