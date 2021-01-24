@@ -298,6 +298,4 @@ POST请求：
 ```
 
 ## 5. 技术细节说明
-1. [模型部署](https://caserwin.gitbooks.io/machine-learning/content/27.html)
-2. [异步和同步、阻塞和非阻塞](https://www.zhihu.com/question/19732473/answer/20851256)
-3. [tornado 并发-多进程](https://caserwin.gitbooks.io/machine-learning/content/18.html)
+1. [模型部署](https://www.yuque.com/caserwin/cv9nqd/oqvz96)
