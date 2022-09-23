@@ -54,7 +54,7 @@ Pillow==5.4.0
 pluggy==0.8.1
 prompt-toolkit==2.0.8
 prophet==0.1.1
-protobuf==3.6.1
+protobuf==3.18.3
 ptyprocess==0.6.0
 py==1.7.0
 Pygments==2.3.1
